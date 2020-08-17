@@ -12,31 +12,14 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 import CheckoutPage from './pages/checkout/checkout.component';
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { selectCollectionsForPreview } from './redux/shop/shop.selectors';
+import { checkUserSession } from './redux/user/user.actions';
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-    //   if (userAuth) {
-    //     const userRef = await createUserProfileDocument(userAuth);
-    //     userRef.onSnapshot((snapshot) => {
-    //       setCurrentUser({
-    //         currentUser: {
-    //           id: snapshot.id,
-    //           ...snapshot.data(),
-    //         },
-    //       });
-    //     });
-    //   }
-    //   // If user didn't sign in, set currentUser to null
-    //   setCurrentUser(userAuth);
-    // Programatically add data to firestore
-    // addCollectionAndDocuments(
-    //   'collections',
-    //   collectionsArray.map(({ title, items }) => ({ title, items }))
-    // );
-    // });
+    const { checkUserSession } = this.props;
+    checkUserSession();
   }
 
   componentWillUnmount() {
@@ -73,4 +56,8 @@ const mapStateToProps = createStructuredSelector({
   // collectionsArray: selectCollectionsForPreview,
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => ({
+  checkUserSession: () => dispatch(checkUserSession()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
