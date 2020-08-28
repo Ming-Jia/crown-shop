@@ -2,14 +2,24 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+// const config = {
+//   apiKey: 'AIzaSyAiDvXp_LYr50Be5Gus-nBvmN4LPoSyL28',
+//   authDomain: 'crown-db-db982.firebaseapp.com',
+//   databaseURL: 'https://crown-db-db982.firebaseio.com',
+//   projectId: 'crown-db-db982',
+//   storageBucket: 'crown-db-db982.appspot.com',
+//   messagingSenderId: '137056154930',
+//   appId: '1:137056154930:web:b0d96d3f0b98b7ec82d32b',
+// };
+
 const config = {
-  apiKey: 'AIzaSyAiDvXp_LYr50Be5Gus-nBvmN4LPoSyL28',
-  authDomain: 'crown-db-db982.firebaseapp.com',
-  databaseURL: 'https://crown-db-db982.firebaseio.com',
-  projectId: 'crown-db-db982',
-  storageBucket: 'crown-db-db982.appspot.com',
-  messagingSenderId: '137056154930',
-  appId: '1:137056154930:web:b0d96d3f0b98b7ec82d32b',
+  apiKey: process.env.REACT_APP_FIREBASE_CONFIG_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_CONFIG_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_CONFIG_DATABASE_URL,
+  projectId: process.env.REACT_APP_FIREBASE_CONFIG_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_CONFIG_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_CONFIG_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_CONFIG_APP_ID,
 };
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {

@@ -11,6 +11,7 @@ import { selectCurrentUser } from './redux/user/user.selectors';
 import { checkUserSession } from './redux/user/user.actions';
 
 import { GlobalStyle } from './global.styles';
+require('dotenv').config({ path: '../../.env' });
 
 const HomePage = lazy(() => import('./pages/homepage/homepage.component'));
 const ShopPage = lazy(() => import('./pages/shop/shop.component'));
@@ -22,8 +23,8 @@ const CheckoutPage = lazy(() => import('./pages/checkout/checkout.component'));
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(() => {
     checkUserSession();
-  }, []);
-
+  }, [checkUserSession]);
+  console.log('IMPORTANT', process.env.REACT_APP_FIREBASE_CONFIG_API_KEY);
   return (
     <div>
       <GlobalStyle />
